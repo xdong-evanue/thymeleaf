@@ -33,4 +33,10 @@ public class HelloController {
         return "hello3";
     }
 
+    @RequestMapping("/hello4")
+    public String hello4(Model model) {
+        model.addAttribute("users", helloService.getAllUsers());
+        return "hello4";
+    }
+
 }
