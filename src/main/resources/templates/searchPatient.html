@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <title>病人信息查询与更新</title>
+</head>
+<body>
+<div>
+    <h1>病人信息查询与更新</h1>
+
+    <form method="get" action="/searchPatient">
+        <div class="input-group">
+            <input type="text" name="phoneNumber" placeholder="输入病人电话号码" required>
+            <button type="submit">搜索</button>
+        </div>
+    </form>
+
+    <form method="post" action="/updatePatient">
+        <div th:if="${patient != null}">
+            <h3>编辑病人信息</h3>
+            <div>
+                <label for="id">编号</label>
+                <input type="text" id="id" name="id" th:value="${patient.getId()}" required>
+            </div>
+            <div>
+                <label for="name">姓名</label>
+                <input type="text" id="name" name="name" th:value="${patient.getName()}" required>
+            </div>
+            <div>
+                <label for="phone">电话号码</label>
+                <input type="text" id="phone" name="phoneNumber" th:value="${patient.getPhoneNumber()}" required>
+            </div>
+            <button type="submit">更新</button>
+        </div>
+
+        <div th:if="${patient != null}">
+            <form method="post" action="/deletePatient" th:object="${patient}">
+                <input type="hidden" name="phoneNumber" th:value="${patient.phoneNumber}" />
+                <button type="submit">删除</button>
+            </form>
+        </div>
+
+        <div th:if="${patient == null}" role="alert">
+            未找到相关病人信息，请重新搜索。
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
