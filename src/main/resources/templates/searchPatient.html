@@ -13,6 +13,10 @@
         </div>
     </form>
 
+    <div th:if="${patient == null}" role="alert">
+        未找到相关病人信息，请重新搜索。
+    </div>
+
     <form method="post" action="/updatePatient">
         <div th:if="${patient != null}">
             <h3>编辑病人信息</h3>
@@ -30,18 +34,13 @@
             </div>
             <button type="submit">更新</button>
         </div>
-
-        <div th:if="${patient != null}">
-            <form method="post" action="/deletePatient" th:object="${patient}">
-                <input type="hidden" name="phoneNumber" th:value="${patient.phoneNumber}" />
-                <button type="submit">删除</button>
-            </form>
-        </div>
-
-        <div th:if="${patient == null}" role="alert">
-            未找到相关病人信息，请重新搜索。
-        </div>
     </form>
+    <div th:if="${patient != null}">
+        <form method="post" action="/deletePatient" th:object="${patient}">
+            <input type="hidden" name="phoneNumber" th:value="${patient.phoneNumber}" />
+            <button type="submit">删除</button>
+        </form>
+    </div>
 </div>
 
 </body>

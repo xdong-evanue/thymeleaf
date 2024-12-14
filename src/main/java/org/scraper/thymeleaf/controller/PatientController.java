@@ -53,10 +53,10 @@ public class PatientController {
         return "redirect:/searchPatient?phoneNumber=" + patient.getPhoneNumber();
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/deletePatient")
     public String deletePatient(@RequestParam String phoneNumber) {
         patientService.deleteByPhoneNumber(phoneNumber);
-        return "redirect:/search";
+        return "redirect:/searchPatientForm";
     }
 
 }
